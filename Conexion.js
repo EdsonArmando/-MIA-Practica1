@@ -1,10 +1,10 @@
 var mysql      = require('mysql');
 var connection =  mysql.createPool({
-    host: 'localhost',
+    host: '127.0.0.1',
     user: 'root',
     password: '',
-    database: 'practicatemp',
-    port: 3306
+    database: 'Practica1',
+    port: 3307
 });
 
 module.exports = connection;

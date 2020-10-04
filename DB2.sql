@@ -1,5 +1,5 @@
-create database PracticaTemp;
-use PracticaTemp;
+create database Practica1;
+use Practica1;
 CREATE TABLE Compania(
 	idCompania int PRIMARY KEY not null auto_increment,
 	nombre_compania VARCHAR(100),
@@ -106,7 +106,7 @@ CREATE TEMPORARY TABLE bulk(
    precio_unitario decimal(5,2)
 );
 #Cargar datos a tabla temporal
-LOAD DATA LOCAL INFILE 'C:\\Users\\EG\\Desktop\\Proyectos\\DataCenterData.csv' 
+LOAD DATA INFILE '/var/lib/mysql-files/DataCenterData.csv'
 INTO TABLE bulk 
 FIELDS TERMINATED BY ';' 
 ENCLOSED BY '"'
@@ -387,4 +387,4 @@ group by c.idCliente
 order by total desc
 limit 10;
 
-truncate table usuario;
+SET FOREIGN_KEY_CHECKS = 0;TRUNCATE table usuario;SET FOREIGN_KEY_CHECKS = 1;

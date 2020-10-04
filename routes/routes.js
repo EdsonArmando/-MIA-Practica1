@@ -326,11 +326,26 @@ router.get(endPoint+'/test', async (req, res) => {
 //Limpiar tablas
 router.get(endPoint+'/eliminarModelo', async (req, res) => {
     BD.getConnection(function(err, connection){
-        const query = 'truncate table Compania;';
+        const query = 'TRUNCATE TABLE producto CASCADE;';
         BD.query(query, function (error, results, fields) {
             if (error) throw error;
 
             res.send("Se elimino corectamente");
+        });
+        connection.release();//release the connection
+    });
+});
+//Llenar Modelo
+router.get(endPoint+'/llenarModelo', async (req, res) => {
+    BD.getConnection(function(err, connection){
+        const query = 'insert into Compania(nombre_compania,correo_compania,contacto_compania,telefono_compania)\n'+
+                    'select bulk.nombre_compania,bulk.correo_compania,bulk.contacto_compania,bulk.telefono_compania\n'+
+                    'from bulk\n'+
+                    'group by bulk.nombre_compania,bulk.correo_compania,bulk.contacto_compania,bulk.telefono_compania;';
+        BD.query(query, function (error, results, fields) {
+            if (error) throw error;
+
+            res.send("Se Lleno corectamente");
         });
         connection.release();//release the connection
     });
