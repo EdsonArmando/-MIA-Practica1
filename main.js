@@ -15,6 +15,6 @@ app.use(cors());
 //routes
 app.use(personRoutes);
 //run
-app.listen(3031, "192.168.1.150",() => {
-    console.log(`El servidor at http://192.168.1.150:${port}/`)
+app.listen(3031, "192.168.0.35",() => {
+    console.log(`El servidor at http://192.168.0.35:${port}/`)
 });
